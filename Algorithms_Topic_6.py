@@ -1,6 +1,7 @@
 # Завдання 1:
 import networkx as nx
 import matplotlib.pyplot as plt
+
 # Створення порожнього графа
 G = nx.Graph()
 
@@ -15,6 +16,7 @@ G.add_edges_from([('Комп\'ютер 1', 'Роутер 1'), ('Комп\'юте
 nx.draw(G, with_labels=True, node_color='skyblue', node_size=1500, font_size=10, font_weight='bold')
 plt.title("Інтернет-топологія")
 plt.show()
+
 # Основні характеристики графа
 print("Кількість вершин (комп'ютерів та роутерів):", G.number_of_nodes())
 print("Кількість ребер (з'єднань):", G.number_of_edges())
@@ -99,11 +101,11 @@ def dijkstra(graph, start):
 # Створення графа з вагами ребер
 G = nx.Graph()
 G.add_nodes_from(['Комп\'ютер 1', 'Комп\'ютер 2', 'Комп\'ютер 3', 'Роутер 1', 'Роутер 2'])
-G.add_weighted_edges_from([('Комп\'ютер 1', 'Роутер 1', {'weight': 3}), ('Комп\'ютер 2', 'Роутер 1', {'weight': 5}),
-                           ('Комп\'ютер 3', 'Роутер 2', {'weight': 2}), ('Роутер 1', 'Роутер 2', {'weight': 1})])
+G.add_weighted_edges_from([('Комп\'ютер 1', 'Роутер 1', 3), ('Комп\'ютер 2', 'Роутер 1', 5),
+                           ('Комп\'ютер 3', 'Роутер 2', 2), ('Роутер 1', 'Роутер 2', 1)])
 
 # Визначення найкоротших шляхів від вершини 'Комп\'ютер 1'
-shortest_paths = dijkstra(G, 'Комп\'ютер 1')
+shortest_paths = dijkstra(dict(G.adjacency()), 'Комп\'ютер 1')
 print("Найкоротші шляхи від вершини 'Комп\'ютер 1':")
 for node, distance in shortest_paths.items():
     print(f"{node}: {distance}")
